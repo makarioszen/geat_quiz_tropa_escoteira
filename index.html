@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Progressão do Ramo Escoteiro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease-in-out;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #4338ca;
+        }
+        .btn-answer {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            border: 1px solid #d1d5db;
+        }
+        .btn-answer:hover {
+            background-color: #e5e7eb;
+        }
+        .btn-answer.correct {
+            background-color: #10b981;
+            color: white;
+            border-color: #059669;
+        }
+        .btn-answer.incorrect {
+            background-color: #ef4444;
+            color: white;
+            border-color: #dc2626;
+        }
+        @keyframes blink {
+            50% { opacity: 0.3; transform: scale(1.05); }
+        }
+        .tense {
+            color: #ef4444; /* red-500 */
+            animation: blink 0.8s step-end infinite;
+        }
+        #quit-button {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: #ef4444;
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        #quit-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div id="status-bar" class="card w-full max-w-lg mb-4 hidden">
+        <div class="flex justify-between items-center">
+            <div id="coin-counter" class="flex items-center text-xl font-bold text-gray-700">
+                <svg class="w-8 h-8 text-yellow-400 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 13h-2v-1.599C7.4 12.923 6 11.332 6 9.5 6 7.567 7.581 6 9.5 6s3.5 1.567 3.5 3.5c0 .542-.134 1.053-.377 1.5H14v1h-3v.5h2v1h-2v1.5h-1V15zM8 9.5c0 .828.672 1.5 1.5 1.5s1.5-.672 1.5-1.5S10.328 8 9.5 8 8 8.672 8 9.5z"></path></svg>
+                <span>Moedas: </span>
+                <span id="coin-count" class="ml-2">0</span>
+            </div>
+            <div id="timer" class="text-2xl font-bold text-indigo-600 transition-colors duration-300">60s</div>
+        </div>
+    </div>
+
+    <div id="start-screen" class="card text-center max-w-lg w-full">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Quiz: Progressão do Ramo Escoteiro</h1>
+        <p class="text-gray-600 mb-8">Teste seus conhecimentos! A cada 3 acertos, você ganha uma moeda. Você tem <span class="font-bold">1 minuto</span>!</p>
+        <button id="start-button" class="btn btn-primary">Começar!</button>
+    </div>
+
+    <div id="quiz-screen" class="card max-w-lg w-full hidden">
+        <div class="mb-6">
+            <div class="flex justify-between items-center mb-1 text-sm font-semibold text-gray-700">
+                <span>Progresso para próxima Moeda</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div id="progress-bar" class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%; transition: width 0.5s ease-in-out;"></div>
+            </div>
+        </div>
+        <div class="flex justify-between items-center mb-6">
+            <div id="question-counter" class="text-sm font-semibold text-gray-600"></div>
+        </div>
+        <h2 id="question-text" class="text-xl font-semibold text-gray-800 mb-6 text-center"></h2>
+        <div id="answers-container" class="space-y-3">
+        </div>
+    </div>
+
+    <div id="end-screen" class="card text-center max-w-lg w-full hidden">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Tempo Esgotado!</h1>
+        <p id="score-text" class="text-gray-600 mb-8 text-lg"></p>
+        <button id="restart-button" class="btn btn-primary">Tentar Novamente</button>
+    </div>
+    
+    <button id="quit-button" class="hidden" title="Abandonar Quiz">X</button>
+
+    <script>
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const endScreen = document.getElementById('end-screen');
+        const statusBar = document.getElementById('status-bar');
+        const startButton = document.getElementById('start-button');
+        const restartButton = document.getElementById('restart-button');
+        const quitButton = document.getElementById('quit-button');
+        const timerElement = document.getElementById('timer');
+        const questionCounterElement = document.getElementById('question-counter');
+        const questionTextElement = document.getElementById('question-text');
+        const answersContainer = document.getElementById('answers-container');
+        const scoreTextElement = document.getElementById('score-text');
+        const progressBar = document.getElementById('progress-bar');
+        const coinCountElement = document.getElementById('coin-count');
+
+        let allQuestions = [];
+
+        let currentQuestionIndex;
+        let score;
+        let timeLeft;
+        let timerInterval;
+        let currentQuizQuestions;
+        let coins;
+        let correctAnswersForCoin;
+
+        async function fetchQuestions() {
+            if (allQuestions.length === 0) {
+                try {
+                    const response = await fetch('perguntas.json');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    allQuestions = await response.json();
+                } catch (error) {
+                    console.error("Não foi possível carregar as perguntas:", error);
+                    quizScreen.innerHTML = '<p class="text-red-500 text-center">Erro ao carregar as perguntas. Por favor, tente recarregar a página.</p>';
+                }
+            }
+        }
+
+        async function startGame() {
+            await fetchQuestions();
+            if (allQuestions.length === 0) return;
+
+            startScreen.classList.add('hidden');
+            endScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            statusBar.classList.remove('hidden');
+            quitButton.classList.remove('hidden');
+            
+            timerElement.classList.remove('tense');
+
+            currentQuestionIndex = 0;
+            score = 0;
+            coins = 0;
+            correctAnswersForCoin = 0;
+            updateCoinDisplay();
+            updateProgressBar();
+            
+            const shuffledQuestions = [...allQuestions].sort(() => Math.random() - 0.5);
+            currentQuizQuestions = shuffledQuestions.slice(0, 9);
+            
+            startTimer();
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (currentQuestionIndex >= currentQuizQuestions.length) {
+                endGame();
+                return;
+            }
+
+            const currentQuestion = currentQuizQuestions[currentQuestionIndex];
+            questionCounterElement.textContent = `Pergunta ${currentQuestionIndex + 1} de ${currentQuizQuestions.length}`;
+            questionTextElement.textContent = currentQuestion.question;
+
+            answersContainer.innerHTML = '';
+            currentQuestion.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.textContent = answer;
+                button.classList.add('btn', 'btn-answer');
+                button.addEventListener('click', () => selectAnswer(index));
+                answersContainer.appendChild(button);
+            });
+        }
+
+        function selectAnswer(selectedIndex) {
+            const currentQuestion = currentQuizQuestions[currentQuestionIndex];
+            const buttons = answersContainer.querySelectorAll('.btn-answer');
+            buttons.forEach(button => button.disabled = true);
+
+            if (selectedIndex === currentQuestion.correct) {
+                score++;
+                correctAnswersForCoin++;
+                if (correctAnswersForCoin === 3) {
+                    coins++;
+                    correctAnswersForCoin = 0;
+                    updateCoinDisplay();
+                }
+                updateProgressBar();
+                buttons[selectedIndex].classList.add('correct');
+            } else {
+                buttons[selectedIndex].classList.add('incorrect');
+                buttons[currentQuestion.correct].classList.add('correct');
+            }
+            
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (timeLeft > 0) {
+                    showQuestion();
+                }
+            }, 1200);
+        }
+        
+        function updateProgressBar() {
+            const progressPercentage = (correctAnswersForCoin / 3) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+        }
+
+        function updateCoinDisplay() {
+            coinCountElement.textContent = coins;
+        }
+
+        function startTimer() {
+            timeLeft = 60;
+            timerElement.textContent = `${timeLeft}s`;
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = `${timeLeft}s`;
+                if (timeLeft <= 10 && timeLeft > 0) {
+                    timerElement.classList.add('tense');
+                }
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+        
+        function quitGame() {
+            clearInterval(timerInterval);
+            quizScreen.classList.add('hidden');
+            statusBar.classList.add('hidden');
+            endScreen.classList.add('hidden');
+            quitButton.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+
+        function endGame() {
+            clearInterval(timerInterval);
+            quizScreen.classList.add('hidden');
+            statusBar.classList.add('hidden');
+            quitButton.classList.add('hidden');
+            endScreen.classList.remove('hidden');
+            scoreTextElement.innerHTML = `Você acertou <span class="font-bold">${score}</span> de <span class="font-bold">${currentQuestionIndex}</span> perguntas e ganhou <span class="font-bold">${coins}</span> moeda(s).`;
+        }
+
+        startButton.addEventListener('click', startGame);
+        restartButton.addEventListener('click', startGame);
+        quitButton.addEventListener('click', quitGame);
+    </script>
+</body>
+</html>
+

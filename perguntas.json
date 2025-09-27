@@ -1,0 +1,202 @@
+[
+    {
+        "question": "Qual é a ordem correta dos Distintivos de Progressão?",
+        "answers": [
+            "Pistas, Trilha, Rumo, Travessia",
+            "Trilha, Pistas, Rumo, Travessia",
+            "Pistas, Rumo, Trilha, Travessia",
+            "Travessia, Rumo, Trilha, Pistas"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Qual distintivo vem imediatamente DEPOIS de 'Pistas'?",
+        "answers": [
+            "Rumo",
+            "Trilha",
+            "Travessia",
+            "Lis de Ouro"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Qual distintivo vem ANTES de 'Travessia'?",
+        "answers": [
+            "Pistas",
+            "Trilha",
+            "Rumo",
+            "Lis de Ouro"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Qual é o primeiro distintivo de progressão que um escoteiro geralmente recebe?",
+        "answers": [
+            "Rumo",
+            "Travessia",
+            "Pistas",
+            "Lis de Ouro"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Qual é a etapa final da progressão, antes da transição para o Ramo Sênior?",
+        "answers": [
+            "Conquistar o distintivo de Trilha",
+            "Conquistar o Cordão Verde e Amarelo",
+            "Conquistar a Lis de Ouro",
+            "Completar a etapa Rumo"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Para passar de 'Pistas' para 'Trilha', o que você precisa fazer?",
+        "answers": [
+            "Metade das atividades de Pistas e Trilhas",
+            "Todas as atividades de Pistas",
+            "Uma noite de acampamento",
+            "Conquistar 3 especialidades"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "O que é necessário para conquistar o distintivo 'Rumo' depois de 'Trilha'?",
+        "answers": [
+            "50% das atividades de Rumo",
+            "100% das atividades de Pistas e Trilhas",
+            "Ser monitor de patrulha",
+            "Ganhar uma competição"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Para receber o distintivo 'Travessia' depois de 'Rumo', o que é preciso?",
+        "answers": [
+            "Metade das atividades de Rumo e Travessia",
+            "100% das atividades de Travessia",
+            "Conquistar o Cordão Vermelho e Branco",
+            "Ter 10 especialidades"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "O que você recebe ao final do Período Introdutório na Cerimônia de Integração?",
+        "answers": [
+            "Apenas o seu primeiro distintivo",
+            "Apenas o lenço do Grupo",
+            "O lenço e o seu primeiro distintivo",
+            "O Cordão Verde e Amarelo"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Para a Lis de Ouro, qual cordão é um requisito obrigatório?",
+        "answers": [
+            "Verde e Amarelo",
+            "Vermelho e Branco",
+            "Azul e Branco",
+            "Não precisa de cordão"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Quantas noites de acampamento, no mínimo, são necessárias para a Lis de Ouro?",
+        "answers": [
+            "5 noites",
+            "20 noites",
+            "10 noites",
+            "Nenhuma"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Para a Lis de Ouro, é preciso ter uma Insígnia da Modalidade?",
+        "answers": [
+            "Sim, qualquer uma do Ramo",
+            "Não, é opcional",
+            "Sim, a de Aviador",
+            "Apenas se for da Modalidade do Ar"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Para a Lis de Ouro, quais atividades dos guias precisam ser completadas?",
+        "answers": [
+            "Todas de Pistas e Trilhas",
+            "Metade de Rumo e Travessia",
+            "Todas de Rumo e Travessia",
+            "Nenhuma, apenas especialidades"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Qual destes é um requisito para a Lis de Ouro?",
+        "answers": [
+            "Ser monitor por um ano",
+            "Possuir uma Insígnia de Interesse Especial",
+            "Ter 15 especialidades",
+            "Ganhar um acampamento de patrulhas"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Quem precisa te recomendar para a Lis de Ouro?",
+        "answers": [
+            "Apenas seus pais",
+            "Apenas o monitor da sua patrulha",
+            "Os escotistas e a Corte de Honra",
+            "O diretor do Grupo Escoteiro"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Como se chama o primeiro período de um novo membro na Tropa Escoteira?",
+        "answers": [
+            "Período de Testes",
+            "Período Introdutório",
+            "Semana do Escoteiro",
+            "Acampamento de Noviços"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Qual o nome do distintivo máximo do Ramo Escoteiro?",
+        "answers": [
+            "Distintivo de Cruzeiro do Sul",
+            "Distintivo de Escoteiro da Pátria",
+            "Distintivo de Escoteiro Lis de Ouro",
+            "Distintivo de Insígnia de BP"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Explorador, Grumete e Aviador são exemplos de quê?",
+        "answers": [
+            "Nomes de patrulhas",
+            "Insígnias de Interesse Especial",
+            "Distintivos de Progressão",
+            "Insígnias da Modalidade"
+        ],
+        "correct": 3
+    },
+    {
+        "question": "O Cordão Verde e Amarelo e o Vermelho e Branco são chamados de:",
+        "answers": [
+            "Cordões de Honra",
+            "Cordões de Eficiência",
+            "Cordões de Liderança",
+            "Cordões de Patrulha"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Onde você pode encontrar todas as informações sobre as atividades da sua progressão?",
+        "answers": [
+            "No site da União dos Escoteiros",
+            "Nos guias da 'Aventura Escoteira'",
+            "Perguntando a um Sênior",
+            "No manual do Ramo Lobinho"
+        ],
+        "correct": 1
+    }
+]
